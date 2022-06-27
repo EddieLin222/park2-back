@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { getCarouselData } from './api/api'
 import List from './component/List'
 
-import './App.css';
+// import './App.css';
 
 const App = () => {
   const [data, setData] = useState([])

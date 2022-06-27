@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import  * as React from 'react';
+import ReactDOM from 'react-dom/client';
+import Button from '@mui/material/Button';
+import { useState, useEffect } from 'react';
+import { getCarouselData } from './api/api'
+import List from './component/List'
+
 import './App.css';
 
-function App() {
+const App = () => {
+  const [data, setData] = useState([])
+  useEffect(() => {
+    getCarouselData().then((result)=>{
+      console.log(result)
+      setData(result)
+    })
+  }, []);
+
+  const ListItems = data.map((item, index) => <List key={index} value={item.home_act_title}></List>)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      {ListItems}
+    </React.Fragment>
   );
 }
 
